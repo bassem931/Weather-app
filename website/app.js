@@ -1,6 +1,8 @@
-const baseUrl = 'https://api.openweathermap.org/data/2.5/weather?zip=';
+const baseUrl = 'https://api.openweathermap.org/data/2.5/weather?q=';
 const apiKey = '&appid=292a37e64fb1d70c665d422742774084&units=imperial';
+
 let ResCreated = false;
+let clicked = false;
 
 //function to scroll to link and change color of clicked section
 function navlinks(){
@@ -67,6 +69,7 @@ function handleError(error){
     //set display to none to hide elements and space they take
     document.getElementById("holder").style.display = "none";
     document.getElementById("note").style.display = "none";
+    document.getElementById("resTitle").style.display = "none";
     //if undefined dont print the undefined term
     if(error.cod === undefined){
         document.getElementById("error").innerHTML = `<span>ERROR:</span> ${error.message} ,please try again`
@@ -79,9 +82,9 @@ function handleError(error){
 }
 
 //getweather to get the weather from OpenWeather api
-const getWeather = async (baseUrl,newZip, apiKey)=>{
+const getWeather = async (baseUrl,newCity,apiKey)=>{
     //fetch the api with the correct structure
-    const res = await fetch(baseUrl+newZip+apiKey);
+    const res = await fetch(baseUrl+newCity+apiKey);
     try {
         const data = await res.json();
         //if result is valid print and return
@@ -116,10 +119,10 @@ function getNewValue(){
         //prevent default for form html tag
         e.preventDefault();
         //get user entered values
-        const newZip = document.getElementById('zip').value;
+        const newCity = document.getElementById('city').value;
         const feel = document.getElementById('feelings').value;
         //call get weather to get weather info as JSON
-        getWeather(baseUrl,newZip,apiKey)
+        getWeather(baseUrl,newCity,apiKey)
         //after completion get the result and post it to our server
         .then((data)=>{
             let d = new Date()
@@ -152,49 +155,130 @@ const postData = async (url = '',data = {})=>{
 }
 
 
-    const updateUi = async () =>{
-        const request = await fetch('/weather');
-        try {
-        // Transform into JSON
-        const allData = await request.json();
-        console.log(allData)
-        // Write updated data to DOM elements
-        //create html elements once
-     
-        //for error to remove error element if visible and make results visible
-        if(ResCreated===false){
-            ResCreated = true;
-            document.getElementById("holder").style.display = "";
-            document.getElementById("note").style.display = "";
-            document.getElementById("error").style.display = "none";
-        }
+const updateUi = async () =>{
+    const request = await fetch('/weather');
+    try {
+    // Transform into JSON
+    const allData = await request.json();
+    console.log(allData)
+    // Write updated data to DOM elements
+    //create html elements once
+    
+    //for error to remove error element if visible and make results visible
+    if(ResCreated===false){
+        ResCreated = true;
+        document.getElementById("holder").style.display = "";
+        document.getElementById("note").style.display = "";
+        document.getElementById("resTitle").style.display = "";
+        document.getElementById("error").style.display = "none";
+    }
 
-        //update all the empty divs with the results
-        document.getElementById("resTitle").innerHTML = "<br>The Weather is";
-        document.getElementById("weatherIcon").innerHTML = `<img id='iconImg' src=\"http://openweathermap.org/img/wn/${allData.weatherIcon}@2x.png\">`;//width=\"150px\" height=\"150px\"
-        document.getElementById("weather").innerHTML = `${allData.weather}`;
-        document.getElementById("temp").innerHTML = `${Math.round(allData.temp)} °F`;
-        document.getElementById("tempCel").innerHTML = `${Math.round((allData.temp - 32) * 5/9)} °C`;
-        document.getElementById("cityCountry").innerHTML =`${allData.city},<br>${allData.country}`;
-        if(allData.feeling!=''){
-            document.getElementById("content").innerHTML = `${allData.feeling}`;
-        }
-        document.getElementById("date").innerHTML =`date: ${allData.date} *`
-        document.getElementById("humidity").innerHTML =`Humidity: ${allData.humidity}%`;
-        document.getElementById("windSpeed").innerHTML =`Wind Speed: ${allData.windSpeed} km/h`;
-        }
-        catch(error) {
-          console.log("error", error);
-          // appropriately handle the error
-          handleError(error);
-        }
-       }
+    //update all the empty divs with the results
+    document.getElementById("resTitle").innerHTML = "<br>The Weather is";
+    document.getElementById("weatherIcon").innerHTML = `<img id='iconImg' src=\"http://openweathermap.org/img/wn/${allData.weatherIcon}@2x.png\">`;//width=\"150px\" height=\"150px\"
+    document.getElementById("weather").innerHTML = `${allData.weather}`;
+    document.getElementById("temp").innerHTML = `${Math.round(allData.temp)} °F`;
+    document.getElementById("tempCel").innerHTML = `${Math.round((allData.temp - 32) * 5/9)} °C`;
+    document.getElementById("cityCountry").innerHTML =`${allData.city},<br>${allData.country}`;
+    if(allData.feeling!=''){
+        document.getElementById("content").innerHTML = `${allData.feeling}`;
+    }
+    document.getElementById("date").innerHTML =`date: ${allData.date} *`
+    document.getElementById("humidity").innerHTML =`Humidity: ${allData.humidity}%`;
+    document.getElementById("windSpeed").innerHTML =`Wind Speed: ${allData.windSpeed} km/h`;
+    }
+    catch(error) {
+        console.log("error", error);
+        // appropriately handle the error
+        handleError(error);
+    }
+    }
+
+
+const getCities = async ()=>{
+    const req = await fetch('cities');
+    try{
+        const cityData = await req.json();
+        const citiesSorted = cityData.sort();
+        return citiesSorted;
+    }
+    catch{
+        console.log(error);
+        handleError(error);
+    }
+}
+
+
+const CityAutoComp = async (citiesSorted)=>{
+    const input = document.getElementById("city");
+    const cityfrag = document.createDocumentFragment();
+
+    citiesSorted.forEach((city) =>{
+            if(city.toLowerCase().startsWith(input.value.toLowerCase()) && input.value !== ""){
+
+            //add as li element
+            const li_city = document.createElement("li");
+            //split string to two and make first part bold
+            const boldStr = city.slice(0,input.value.length)
+            const resStr = city.slice(input.value.length,city.length)
+            const cityBold = `<b>${boldStr}</b>${resStr}`;
+            //add new string to list
+            li_city.innerHTML = cityBold;
+            cityfrag.appendChild(li_city);
+
+            //event listener to place value at input and remove menu
+            li_city.addEventListener("click",(e) =>{
+                const suggestions = document.getElementById('suggestions')
+                //place value
+                input.value = li_city.innerText;
+                //empty list as answer is found
+                suggestions.innerHTML = "";
+                //set back to default (none)
+                suggestions.style.display= "none";
+                clicked = true;
+                console.log(clicked+" at func");
+                return true;
+                
+            })
+
+            }
+            return false;
+            
+        });
+
+    //show suggestions then hide when input is empty
+    if(input.value!==""){
+        document.getElementById('suggestions').style.display= "block";
+    }
+    else{
+        document.getElementById('suggestions').style.display="none";
+    }
+    document.getElementById('suggestions').appendChild(cityfrag);
+
+    //return clicked;
+}
 
 
 
 //hide elements at the start
+document.getElementById("resTitle").style.display = "none";
 document.getElementById("holder").style.display = "none";
 document.getElementById("note").style.display = "none";
 //call functions to start all the functionalites
 navlinks();
-getNewValue();
+getCities().then((citiesData) =>{
+
+
+    getNewValue();
+    //keyup fixed it????
+    document.getElementById("city").addEventListener('keyup',(e)=>{
+
+        console.log("hena")
+        document.getElementById('suggestions').innerHTML="";
+
+        CityAutoComp(citiesData).then((ifclick)=>{
+            if(ifclick)
+            console.log("mafrod true yala")
+        });
+    });
+})

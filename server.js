@@ -5,6 +5,9 @@ const WeatherData =[];
 // Express to run server and routes
 const express = require('express');
 
+//get cities
+const citiesArr = require('./city.list.json');
+
 // Start up an instance of app
 const app = express();
 
@@ -31,6 +34,14 @@ const server = app.listen(port,()=>{
 
 
 // Callback function to complete GET '/all'
+app.get('/cities',(req, res) =>{
+    let NewCities = [];
+    citiesArr.forEach(city => {
+        NewCities.push(city.name);
+    });
+    res.send(NewCities);
+})
+
 app.get('/all',(req, res) =>{
     res.send(WeatherData);
 })
@@ -40,9 +51,9 @@ app.get('/weather',(req, res) =>{
     res.send(projectData);
 })
 
+
 // Post Route
 app.post('/addWeather',(req, res)=>{
-console.log(req.body);
 
 newEntry = {
     temp:req.body.temp,
@@ -55,7 +66,6 @@ Object.assign(projectData,newEntry);
 
 //post route advanced
 app.post('/addWeatherAdv',(req, res)=>{
-    console.log(req.body);
     
     newEntry = {
         weather:req.body.weather,

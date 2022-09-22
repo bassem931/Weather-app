@@ -56,7 +56,8 @@ body{
 #main_header{
     margin-top: 160px;
     padding: 10px;
-    font: 9vw Special Elite;
+    font: 10vw lato;
+    color: rgb(202, 244, 199);
     text-align: center;
 }
 #second_header{
@@ -76,9 +77,53 @@ margin: 0 auto;
 text-align: center;
 }
 
+#suggestCont{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    
+}
+
+#suggestions{
+    display: none;
+    position: relative;
+    z-index: 3;
+    list-style-type: none;
+    background-color: #dbece8;
+    padding-left: 0;
+    margin: 0 auto;
+    width: 25vw;
+    height: 12vh;
+    overflow-y: scroll;
+
+}
+
+#suggestions li{
+    position:relative;
+    cursor: pointer;
+    color: #000;
+    font-size:16px;
+}
+
+
+
+
+
+@media only screen and (min-width:760px ) {
+    #suggestions li:hover{
+        background-color: rgba(102, 228, 180, 0.852);
+    }
+    #suggestions li.selected{
+        background-color: rgba(102, 228, 180, 0.852);
+    }
+}
+
+
+
 input[type="text"], textarea {
     background-color : #dbece8;
     width: 25vw;
+    font-size: 20px;
 }
 
 #enter_city_container{
@@ -138,7 +183,7 @@ input[type="text"], textarea {
 
 #holder {
     position: relative;
-    margin: 15px auto;
+    margin: 2% auto;
     border-radius: 20px;
     padding: 0px 2.5% 0px 2.5%;
     width: 30%;
@@ -152,7 +197,6 @@ input[type="text"], textarea {
     font-size: 5vw;
     font:300 Roboto,'sans-serif';
     color: black;
-    margin-top: 0.5vh;
 }
 
 
@@ -163,10 +207,9 @@ input[type="text"], textarea {
     grid-template-columns: auto auto;
     grid-template-rows: auto auto;
     gap: 2% 10%;
-    grid-auto-flow: row;
     grid-template-areas:
-      "weatherIcon cityCountry ."
-      "weather date .";
+      "weatherIcon cityCountry"
+      "weather date";
 }
   
 #weatherIcon { 
@@ -177,8 +220,8 @@ input[type="text"], textarea {
   #cityCountry { 
     grid-area: cityCountry; 
     font-size: 2.8vw;
-    min-width: 20vw;
-    text-align: end;
+    width: 20vw;
+    text-align: right;
     color: slateblue;
     border-top-right-radius: 20px;
     border-top-left-radius: 20px;
@@ -192,7 +235,7 @@ input[type="text"], textarea {
   
   #date { 
     grid-area: date; 
-    text-align: end;
+    text-align: right;
 }
 
 #line{
@@ -216,7 +259,7 @@ input[type="text"], textarea {
 
 
 #note{
-    font-size: 12px;
+    font-size: 0.9vw;
 }
 
 .resFlex{

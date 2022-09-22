@@ -24,11 +24,11 @@
 
             <div id="Background">
                 This is the website were you can conveniently find the weather of any city you can think of.The process is very simple and will be explained down below<br>
-                all you have to do is know the zip code of the city you want to know the weather in. The results will be returned which are the temperature and date <br><br>
+                all you have to do is know the city code of the city you want to know the weather in. The results will be returned which are the temperature and date <br><br>
                 <span id="list_head">To use this website follow this instrucions:</span>
                 <ol>
                     <li class="list">choose the city you want to know the weather in</li>
-                    <li class="list">type the zip-code in the text space available</li>
+                    <li class="list">type the city-code in the text space available</li>
                     <li class="list">click the button after the text space and wait for the magic to happen :) </li>
                 </ol>
             </div>
@@ -36,10 +36,15 @@
             <br>
 
             <div id="enter_city_container">
-            <form id="enterForm">
-                <label for="zip_box" class="labels">Enter the zip code</label><br><br>
-                <input type="text" id="zip" name="zip_box" placeholder="zip-code"><br><br>
+            <form id="enterForm" autocomplete="off">
+                <label for="city_box" class="labels">Enter the city name</label><br><br>
                 <div id="error"></div>
+                <input type="text" id="city" name="city_box" placeholder="city name" list="suggestions">
+                <div id="suggestCont">
+                <ul id="suggestions">
+                </ul>
+                </div>
+                <br><br>
                 <label for="feeling_box" class="labels">How are you feeling today</label><br><br>
                 <textarea id="feelings" name="feeling_box" rows="3" cols="40" placeholder="Tell us how you feel"></textarea><br><br>
                 <button id="generate" type="submit"> Click this button to get the weather</button>
@@ -70,10 +75,11 @@
             </div>
 
             <br>
+            
 
             <div id="paragraph_end">
-                Openweather API was used for this project.This api is used to send request in the form of zip code and recieve several weather information as a result.This include temparture humidity wind speed as well as the 
-                location of the zip code entered and date. This is all provided by Openweather Api the information is retrieved and displayed to the user.
+                Openweather API was used for this project.This api is used to send request in the form of city code and recieve several weather information as a result.This include temparture humidity wind speed as well as the 
+                location of the city code entered and date. This is all provided by Openweather Api the information is retrieved and displayed to the user.
                 <a href="https://openweathermap.org/" target="_blank"><img src="https://assets.zabbix.com/img/brands/openweather.jpg" alt="Open Weather"></a>
             </div>
             <div class="footer">
