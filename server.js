@@ -77,6 +77,7 @@ app.post('/addWeatherAdv',(req, res)=>{
         temp:req.body.temp,
         date:req.body.date,
         feeling:req.body.feeling,
+        pressure:req.body.pressure,
     }
     WeatherData.push(newEntry);
     Object.assign(projectData,newEntry);

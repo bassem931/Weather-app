@@ -1,5 +1,6 @@
 body{
-    background: linear-gradient(90deg, rgba(82, 45, 137,0.85), rgba(67, 155, 162,90%), rgba(40, 103, 120,80%) );
+    /*background: linear-gradient(90deg, rgba(82, 45, 137,0.85), rgba(67, 155, 162,90%), rgba(40, 103, 120,80%) );*/
+    background: linear-gradient(to right,rgb(22, 150, 160),rgb(0, 173, 160),rgb(100, 182, 185));
     color: #fff;
     font-family:'lato', Arial, Helvetica, sans-serif;
     font: 20px lato;
@@ -19,8 +20,8 @@ body{
     border-top: none;
     border-bottom-left-radius: 40px;
     border-bottom-right-radius: 40px;
-    background: linear-gradient(90deg, rgb(96, 54, 159), rgb(67, 155, 162), rgb(40, 103, 120) );
-    
+    /*background: linear-gradient(90deg, rgb(96, 54, 159), rgb(67, 155, 162), rgb(40, 103, 120) );*/
+    background: linear-gradient(to right,rgb(22, 150, 160),rgb(0, 173, 160),rgb(100, 182, 185));
     position: fixed;
     top: 0;
     z-index: 5;
@@ -57,8 +58,12 @@ body{
     margin-top: 160px;
     padding: 10px;
     font: 10vw lato;
-    color: rgb(202, 244, 199);
+    /*background-image: linear-gradient(to left,rgba(100, 180, 199, 0.5),rgb(50, 92, 102));*/
+    background-image: linear-gradient(45deg,rgb(69, 50, 190),rgb(95, 90, 236));
+    color: transparent;
+    background-clip: text;
     text-align: center;
+    -webkit-background-clip: text;
 }
 #second_header{
     font: 40pt lato;
@@ -187,9 +192,9 @@ input[type="text"], textarea {
     border-radius: 20px;
     padding: 0px 2.5% 0px 2.5%;
     width: 30%;
-    background: #dbece8;
-    color: darkblue;
-    border : 3px solid deepskyblue;
+    background: linear-gradient(45deg,rgb(50, 155, 190),rgb(90, 204, 236));
+    color: black;
+    border : 3px solid black;
     text-align: left;
 }
 
@@ -222,7 +227,6 @@ input[type="text"], textarea {
     font-size: 2.8vw;
     width: 20vw;
     text-align: right;
-    color: slateblue;
     border-top-right-radius: 20px;
     border-top-left-radius: 20px;
     padding: 2px;
@@ -245,7 +249,7 @@ input[type="text"], textarea {
      margin-right: auto;
      margin-bottom: 2px;
      overflow: hidden; 
-     border-top:5px inset black
+     border-top:5px solid black
 }
 
 /*
@@ -267,7 +271,7 @@ input[type="text"], textarea {
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-evenly;
-    background-color:rgba(102, 228, 180, 0.6);
+    /*background-color:rgba(102, 228, 180, 0.6);*/
     margin-top: 2%;
     margin-bottom: 2%;
 }
@@ -275,15 +279,11 @@ input[type="text"], textarea {
     font-size: 4vw;
 }
 
-#humWindFlex{
-    background-color: yellowgreen;
-}
-
-#humidity,#windSpeed{
+#humidity,#windSpeed,#pressure{
     display: inline;
     margin-left: 5%;
     margin-right: 5%;
-    font-size: 1.1vw;
+    font-size: 1.2vw;
 }
 
 #content{

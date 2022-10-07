@@ -128,10 +128,11 @@ function getNewValue(){
             let d = new Date()
             let newDate = (d.getUTCMonth()+1)+'.'+ d.getUTCDate()+'.'+ d.getUTCFullYear();
             //postData('/addWeather',{temp:data.main.temp, date:newDate, feeling:feel});
-            postData('/addWeatherAdv',{weather:data.weather[0].description, weatherIcon:data.weather[0].icon, humidity:data.main.humidity, windSpeed:data.wind.speed ,country:data.sys.country, city:data.name, temp:data.main.temp, date:newDate, feeling:feel});
+            postData('/addWeatherAdv',{weather:data.weather[0].description, weatherIcon:data.weather[0].icon, humidity:data.main.humidity, windSpeed:data.wind.speed ,country:data.sys.country, city:data.name, temp:data.main.temp, date:newDate, feeling:feel, pressure:data.main.pressure});
             //after posting data update the ui both are in the same .then
             updateUi();
         })
+        return 1;//test
     });
 }
 
@@ -161,6 +162,7 @@ const updateUi = async () =>{
     // Transform into JSON
     const allData = await request.json();
     console.log(allData)
+    console.log(allData.pressure);
     // Write updated data to DOM elements
     //create html elements once
     
@@ -186,6 +188,7 @@ const updateUi = async () =>{
     document.getElementById("date").innerHTML =`date: ${allData.date} *`
     document.getElementById("humidity").innerHTML =`Humidity: ${allData.humidity}%`;
     document.getElementById("windSpeed").innerHTML =`Wind Speed: ${allData.windSpeed} km/h`;
+    document.getElementById("pressure").innerHTML =`Pressure: ${allData.pressure} atm`;
     }
     catch(error) {
         console.log("error", error);
@@ -212,7 +215,7 @@ const getCities = async ()=>{
 const CityAutoComp = async (citiesSorted)=>{
     const input = document.getElementById("city");
     const cityfrag = document.createDocumentFragment();
-
+    
     citiesSorted.forEach((city) =>{
             if(city.toLowerCase().startsWith(input.value.toLowerCase()) && input.value !== ""){
 
@@ -235,15 +238,12 @@ const CityAutoComp = async (citiesSorted)=>{
                 suggestions.innerHTML = "";
                 //set back to default (none)
                 suggestions.style.display= "none";
-                clicked = true;
-                console.log(clicked+" at func");
-                return true;
-                
-            })
 
+                document.getElementById("enterForm").dispatchEvent(new Event('submit'));
+                console.log("tam ya basha");
+                return 1;
+            });
             }
-            return false;
-            
         });
 
     //show suggestions then hide when input is empty
@@ -256,6 +256,13 @@ const CityAutoComp = async (citiesSorted)=>{
     document.getElementById('suggestions').appendChild(cityfrag);
 
     //return clicked;
+    /*
+    return new Promise(function(resolve, reject) {
+        resolve(false);
+    });
+    */
+   console.log("ba5alas autocomp");
+   return 0;
 }
 
 
@@ -266,19 +273,19 @@ document.getElementById("holder").style.display = "none";
 document.getElementById("note").style.display = "none";
 //call functions to start all the functionalites
 navlinks();
+
+//try vhain then after each other with returns
 getCities().then((citiesData) =>{
-
-
     getNewValue();
-    //keyup fixed it????
-    document.getElementById("city").addEventListener('keyup',(e)=>{
-
-        console.log("hena")
-        document.getElementById('suggestions').innerHTML="";
-
-        CityAutoComp(citiesData).then((ifclick)=>{
-            if(ifclick)
-            console.log("mafrod true yala")
-        });
-    });
+    return citiesData;
 })
+.then((citiesData) =>{
+    //keyup fixed it????
+    document.getElementById("city").addEventListener('keyup', (e)=>{
+    console.log("hena")
+    document.getElementById('suggestions').innerHTML="";
+    CityAutoComp(citiesData)
+    })
+})
+
+   
