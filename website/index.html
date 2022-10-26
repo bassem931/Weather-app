@@ -1,92 +1,103 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title id="title">Weather App</title>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine|Special Elite|lato&effect=shadow-multiple|emboss|fire|neon|fire-animation|outline">
-        <link rel="stylesheet" href="style.css"> 
-    </head>
-    <body>
 
-        <div id="class_cont">
-            <ul class="nav_list_container">
-                <li class="nav_list"> <a class="nav_link" >Home</a></li>
-                <li class="nav_list"> <a class="nav_link" >Background</a></li>
-                <li class="nav_list"> <a class="nav_link" >Enter info</a></li>
-                <li class="nav_list"> <a class="nav_link" >Open Weather</a></li>
-            </ul>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="title">Weather App</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Tangerine|Special Elite|lato&effect=shadow-multiple|emboss|fire|neon|fire-animation|outline">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="class_cont">
+        <ul class="nav_list_container">
+            <li class="nav_list"> <a class="nav_link">Home</a></li>
+            <li class="nav_list"> <a class="nav_link">Background</a></li>
+            <li class="nav_list"> <a class="nav_link">Enter info</a></li>
+            <li class="nav_list"> <a class="nav_link">Open Weather</a></li>
+        </ul>
+    </div>
+
+    <div id="main_header">Weather App</div>
+    <div id="second_header" class="font-effect-emboss">Bringing the weather news to you</div> <br>
+
+    <div class="main_container">
+
+        <div id="Background">
+            This is the website were you can conveniently find the weather of any city you can think of. The process is
+            very simple and will be explained down below<br>
+            all you have to do is know the city code of the city you want to know the weather in. The results will be
+            returned which are the temperature and date <br><br>
+            <span id="list_head">To use this website follow this instrucions:</span>
+            <ol>
+                <li class="list">choose the city you want to know the weather in</li>
+                <li class="list">type the city-code in the text space available</li>
+                <li class="list">click the button after the text space and wait for the magic to happen :) </li>
+            </ol>
         </div>
-           
-        <div id="main_header">Weather App</div>
-        <div id="second_header" class="font-effect-emboss">Bringing the weather news to you</div> <br>
 
-        <div class="main_container">
+        <br>
 
-            <div id="Background">
-                This is the website were you can conveniently find the weather of any city you can think of.The process is very simple and will be explained down below<br>
-                all you have to do is know the city code of the city you want to know the weather in. The results will be returned which are the temperature and date <br><br>
-                <span id="list_head">To use this website follow this instrucions:</span>
-                <ol>
-                    <li class="list">choose the city you want to know the weather in</li>
-                    <li class="list">type the city-code in the text space available</li>
-                    <li class="list">click the button after the text space and wait for the magic to happen :) </li>
-                </ol>
-            </div>
-
-            <br>
-
-            <div id="enter_city_container">
+        <div id="enter_city_container">
             <form id="enterForm" autocomplete="off">
                 <label for="city_box" class="labels">Enter the city name</label><br><br>
                 <div id="error"></div>
                 <input type="text" id="city" name="city_box" placeholder="city name" list="suggestions">
                 <div id="suggestCont">
-                <ul id="suggestions">
-                </ul>
+                    <ul id="suggestions">
+                    </ul>
                 </div>
                 <br><br>
                 <label for="feeling_box" class="labels">How are you feeling today</label><br><br>
-                <textarea id="feelings" name="feeling_box" rows="3" cols="40" placeholder="Tell us how you feel"></textarea><br><br>
+                <textarea id="feelings" name="feeling_box" rows="3" cols="40"
+                    placeholder="Tell us how you feel"></textarea><br><br>
                 <button id="generate" type="submit"> Click this button to get the weather</button>
             </form>
             <div id="resTitle"></div>
-                <div id="holder">
-                    <br>
-                    <div id="topres">
-                        <div id="weatherIcon"></div>
-                        <div id="weather" ></div>
-                        <div id="cityCountry"></div>
-                        <div id="date"></div>
-                    </div>
-                    <hr id="line">
-                    <div class="resFlex">
-                        <div id="temp"></div>
-                        <span id="tempSeperator">/</span>
-                        <div id="tempCel"></div>
-                    </div>
-                    <div class="resFlex" id="humWindFlex">
-                        <div id="humidity"></div>
-                        <div id="windSpeed"></div>
-                        <div id="pressure"></div>
-                    </div>
-                    <div id="content"></div>
-                    
+            <div id="holder">
+                <br>
+                <div id="topres">
+                    <div id="weatherIcon"></div>
+                    <div id="weather"></div>
+                    <div id="cityCountry"></div>
+                    <div id="date"></div>
                 </div>
-                <div id="note"> *(MM/DD/YYYY), All dates are in UTC time </div>
-            </div>
+                <hr id="line">
+                <div class="resFlex">
+                    <div id="temp"></div>
+                    <span id="tempSeperator">/</span>
+                    <div id="tempCel"></div>
+                </div>
+                <div class="resFlex">
+                    <div id="humidity"></div>
+                    <div id="windSpeed"></div>
+                    <div id="pressure"></div>
+                </div>
+                <div id="content"></div>
 
-            <br>
-            
-
-            <div id="paragraph_end">
-                Openweather API was used for this project.This api is used to send request in the form of city code and recieve several weather information as a result.This include temparture humidity wind speed as well as the 
-                location of the city code entered and date. This is all provided by Openweather Api the information is retrieved and displayed to the user.
-                <a href="https://openweathermap.org/" target="_blank"><img src="https://assets.zabbix.com/img/brands/openweather.jpg" alt="Open Weather"></a>
             </div>
-            <div class="footer">
-                <span>Copyright 2022 ©</span>
-            </div>
+            <div id="note"> *(MM/DD/YYYY), All dates are in UTC time </div>
         </div>
-        <script src="app.js"></script>
-    </body>
+
+        <br>
+
+
+        <div id="paragraph_end">
+            Openweather API was used for this project.This api is used to send request in the form of city code and
+            recieve several weather information as a result.This include temparture humidity wind speed as well as the
+            location of the city code entered and date. This is all provided by Openweather Api the information is
+            retrieved and displayed to the user.
+            <a href="https://openweathermap.org/" target="_blank"><img id="endImg"
+                    src="https://assets.zabbix.com/img/brands/openweather.jpg" alt="Open Weather"></a>
+        </div>
+        <div class="footer">
+            <span>Copyright 2022 ©</span>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+
 </html>

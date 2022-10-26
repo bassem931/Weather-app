@@ -1,14 +1,14 @@
-body{
+body {
     /*background: linear-gradient(90deg, rgba(82, 45, 137,0.85), rgba(67, 155, 162,90%), rgba(40, 103, 120,80%) );*/
-    background: linear-gradient(to right,rgb(22, 150, 160),rgb(0, 173, 160),rgb(100, 182, 185));
-    color: #fff;
-    font-family:'lato', Arial, Helvetica, sans-serif;
-    font: 20px lato;
+    background: linear-gradient(to right, rgb(22, 150, 160), rgb(0, 173, 160), rgb(100, 182, 185));
+    color: whitesmoke;
+    font-family: 'lato', Arial, Helvetica, sans-serif;
+    font: 1.5vw lato;
 }
 
 
 
-.nav_list_container{
+.nav_list_container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -21,32 +21,32 @@ body{
     border-bottom-left-radius: 40px;
     border-bottom-right-radius: 40px;
     /*background: linear-gradient(90deg, rgb(96, 54, 159), rgb(67, 155, 162), rgb(40, 103, 120) );*/
-    background: linear-gradient(to right,rgb(22, 150, 160),rgb(0, 173, 160),rgb(100, 182, 185));
+    background: linear-gradient(to right, rgb(22, 150, 160), rgb(0, 173, 160), rgb(100, 182, 185));
     position: fixed;
     top: 0;
     z-index: 5;
     width: 97%;
 }
 
-.nav_list{
+.nav_list {
     display: inline-block;
     margin: 15px;
 }
 
-.nav_link{
+.nav_link {
     text-decoration: none;
-    color: beige;
+    color: whitesmoke;
     cursor: pointer;
     padding: 7px;
     border-radius: 30px;
 }
 
 
-@media only screen and (min-width:760px ) {
-    .nav_link:hover{
+@media only screen and (min-width:760px) {
+    .nav_link:hover {
         background-color: rgba(102, 228, 180, 0.852);
         color: rgb(30, 28, 14);
-        border-color: rgba(102, 228, 180,1);
+        border-color: rgba(102, 228, 180, 1);
         transition: ease 0.3s all;
     }
 }
@@ -54,42 +54,42 @@ body{
 
 
 
-#main_header{
+#main_header {
     margin-top: 160px;
     padding: 10px;
     font: 10vw lato;
     /*background-image: linear-gradient(to left,rgba(100, 180, 199, 0.5),rgb(50, 92, 102));*/
-    background-image: linear-gradient(45deg,rgb(69, 50, 190),rgb(95, 90, 236));
+    background-image: linear-gradient(45deg, rgb(54, 19, 102), rgb(0, 0, 0), rgb(54, 19, 102));
     color: transparent;
     background-clip: text;
     text-align: center;
     -webkit-background-clip: text;
 }
-#second_header{
-    font: 40pt lato;
+
+#second_header {
+    font: 3vw lato;
     text-align: left;
-    color: #fff;
+    color: whitesmoke;
 }
 
 
-.labels{
-    font-size: 35px;
+.labels {
     text-align: center;
 }
 
-#enterform{
-margin: 0 auto;
-text-align: center;
+#enterform {
+    margin: 0 auto;
+    text-align: center;
 }
 
-#suggestCont{
+#suggestCont {
     position: absolute;
     left: 50%;
     transform: translate(-50%, 0);
-    
+
 }
 
-#suggestions{
+#suggestions {
     display: none;
     position: relative;
     z-index: 3;
@@ -103,35 +103,37 @@ text-align: center;
 
 }
 
-#suggestions li{
-    position:relative;
+#suggestions li {
+    position: relative;
     cursor: pointer;
     color: #000;
-    font-size:16px;
+    font-size: 1vw;
 }
 
 
 
 
 
-@media only screen and (min-width:760px ) {
-    #suggestions li:hover{
+@media only screen and (min-width:760px) {
+    #suggestions li:hover {
         background-color: rgba(102, 228, 180, 0.852);
     }
-    #suggestions li.selected{
+
+    #suggestions li.selected {
         background-color: rgba(102, 228, 180, 0.852);
     }
 }
 
 
 
-input[type="text"], textarea {
-    background-color : #dbece8;
+input[type="text"],
+textarea {
+    background-color: #dbece8;
     width: 25vw;
-    font-size: 20px;
+    font-size: 1.5vw;
 }
 
-#enter_city_container{
+#enter_city_container {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -139,14 +141,14 @@ input[type="text"], textarea {
     align-content: center;
 }
 
-#error{
+#error {
     font-size: 25px;
-    font:300 lato;
+    font: 300 lato;
     color: red;
 }
 
-#generate{
-    font: 30pt bold lato;
+#generate {
+    font: 1.75vw bold lato;
     font-weight: 500;
     border: 1px solid burlywood;
     background-color: antiquewhite;
@@ -154,9 +156,11 @@ input[type="text"], textarea {
     cursor: pointer;
 }
 
-@media only screen and (min-width:760px ) {
-    #generate:hover,#generate:active{
-        background-color: rgba(102, 228, 180, 0.852);
+@media only screen and (min-width:760px) {
+
+    #generate:hover,
+    #generate:active {
+        background-color: aquamarine;
         border-color: black;
         color: rgb(26, 14, 30);
         transition: ease 0.3s all;
@@ -164,24 +168,26 @@ input[type="text"], textarea {
 }
 
 
-#enter_city_container,#Background,#paragraph_end{
+#enter_city_container,
+#Background,
+#paragraph_end {
     transition: background-color 1s;
 }
 
-.highlight{
-    background-color:rgba(19, 88, 148, 0.877);
+.highlight {
+    background-color: rgba(19, 88, 148, 0.877);
 }
 
-#paragraph_end{
+#paragraph_end {
     display: grid;
     grid-template-columns: 1fr 0.25fr;
 }
 
-.footer{
+.footer {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    padding:5px;
+    padding: 5px;
     border-top: 5px solid rgba(90, 5, 59, 0.8);
 }
 
@@ -192,38 +198,45 @@ input[type="text"], textarea {
     border-radius: 20px;
     padding: 0px 2.5% 0px 2.5%;
     width: 30%;
-    background: linear-gradient(45deg,rgb(50, 155, 190),rgb(90, 204, 236));
+    background: linear-gradient(45deg, rgb(50, 155, 190), rgb(90, 204, 236));
     color: black;
-    border : 3px solid black;
+    border: 3px solid black;
     text-align: left;
 }
 
-#resTitle{
+#resTitle {
     font-size: 5vw;
-    font:300 Roboto,'sans-serif';
+    font: 300 Roboto, 'sans-serif';
     color: black;
 }
 
 
-#topres{
-    margin: auto; 
+#topres {
+    margin: auto;
     text-align: center;
     display: grid;
     grid-template-columns: auto auto;
     grid-template-rows: auto auto;
     gap: 2% 10%;
     grid-template-areas:
-      "weatherIcon cityCountry"
-      "weather date";
+        "weatherIcon cityCountry"
+        "weather date";
 }
-  
-#weatherIcon { 
+
+#weatherIcon {
     grid-area: weatherIcon;
     justify-self: start;
- }
+    width: 100%;
+    height: auto;
+}
 
-  #cityCountry { 
-    grid-area: cityCountry; 
+#iconImg {
+    width: 100%;
+    height: auto;
+}
+
+#cityCountry {
+    grid-area: cityCountry;
     font-size: 2.8vw;
     width: 20vw;
     text-align: right;
@@ -231,25 +244,25 @@ input[type="text"], textarea {
     border-top-left-radius: 20px;
     padding: 2px;
 }
-  
-  #weather { 
-    grid-area: weather; 
+
+#weather {
+    grid-area: weather;
     justify-self: center;
 }
-  
-  #date { 
-    grid-area: date; 
+
+#date {
+    grid-area: date;
     text-align: right;
 }
 
-#line{
-     display: block; 
-     width: 117.1%;
-     margin-left: -8.8%;
-     margin-right: auto;
-     margin-bottom: 2px;
-     overflow: hidden; 
-     border-top:5px solid black
+#line {
+    display: block;
+    width: 117.1%;
+    margin-left: -8.8%;
+    margin-right: auto;
+    margin-bottom: 2px;
+    overflow: hidden;
+    border-top: 5px solid black
 }
 
 /*
@@ -262,11 +275,11 @@ input[type="text"], textarea {
 }*/
 
 
-#note{
+#note {
     font-size: 0.9vw;
 }
 
-.resFlex{
+.resFlex {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -275,25 +288,49 @@ input[type="text"], textarea {
     margin-top: 2%;
     margin-bottom: 2%;
 }
-#temp,#tempCel,#tempSeperator{
+
+#temp,
+#tempCel,
+#tempSeperator {
     font-size: 4vw;
 }
 
-#humidity,#windSpeed,#pressure{
+#humidity,
+#windSpeed,
+#pressure {
     display: inline;
     margin-left: 5%;
     margin-right: 5%;
     font-size: 1.2vw;
 }
 
-#content{
+#content {
     font: 300 lato;
     text-align: center;
     font-size: 2vw;
     color: #000;
 }
 
-  
+/*screen size tbd*/
+@media only screen and (min-width:1080px) {
+    li:focus-within {
+        background-color: aquamarine;
+        border-color: black;
+        font-weight: bold;
+    }
+
+    #city:focus-within,
+    #feelings:focus-within {
+
+        border: 5px solid black;
+    }
+}
+
+#endImg {
+    width: 100%;
+    height: auto;
+}
+
 /*
 #weatherIcon{
     position: sticky;
