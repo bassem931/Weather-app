@@ -3,7 +3,7 @@ body {
     background: linear-gradient(to right, rgb(22, 150, 160), rgb(0, 173, 160), rgb(100, 182, 185));
     color: whitesmoke;
     font-family: 'lato', Arial, Helvetica, sans-serif;
-    font: 1.5vw lato;
+    font: 1.5rem lato;
 }
 
 
